@@ -10,3 +10,9 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+/* Ocultar los checkboxes */
+/*.hide {
+    position: absolute;
+    left: -9999px;
+}*/
