@@ -25,15 +25,19 @@ document.addEventListener("DOMContentLoaded", async function() {
                     const parent = checkbox.parentNode;
                     parent.style.background = "red";
                     const label = this.createElement("label");
-                    label.textContent = "Disponible";
+                    label.textContent = "No Disponible";
                     parent.appendChild(label);
                 }
                 checkbox.style.visibility = "hidden";
                 checkbox.addEventListener("change", function() {
                     if (this.checked) {
-                        this.parentNode.style.background = "green";
+                        const parent = this.parentNode;
+                        parent.style.background = "green";
+                        parent.querySelector('label').textContent = "Disponible";
                     } else {
-                        this.parentNode.style.background = "red";
+                        const parent = this.parentNode;
+                        parent.style.background = "red";
+                        parent.querySelector('label').textContent = "No Disponible";
                     }
                 });
             });
