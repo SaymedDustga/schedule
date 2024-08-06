@@ -1,9 +1,14 @@
 const mod_button = document.getElementById("modificar");
 const save_button = document.getElementById("guardar");
+const url = "https://saymeddustga.github.io/schedule/schedule.json";
+//const url = "schedule.json";
+
+const red = "#FFB7B2";
+const green = "#B7D1B9";
 
 document.addEventListener("DOMContentLoaded", async function() {
     try {
-        const response = await fetch("https://saymeddustga.github.io/schedule/schedule.json");
+        const response = await fetch(url);
         const data = await response.json();
 
         Object.entries(data).forEach(([day, schedule]) => {
@@ -15,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 if (available) {
                     checkbox.checked = true;
                     const parent = checkbox.parentNode;
-                    parent.style.background = "green";
+                    parent.style.background = green;
                     const label = this.createElement("label");
                     label.textContent = "Disponible";
                     parent.appendChild(label);
@@ -23,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 } else {
                     checkbox.checked = false;
                     const parent = checkbox.parentNode;
-                    parent.style.background = "red";
+                    parent.style.background = red;
                     const label = this.createElement("label");
                     label.textContent = "No Disponible";
                     parent.appendChild(label);
@@ -32,11 +37,11 @@ document.addEventListener("DOMContentLoaded", async function() {
                 checkbox.addEventListener("change", function() {
                     if (this.checked) {
                         const parent = this.parentNode;
-                        parent.style.background = "green";
+                        parent.style.background = green;
                         parent.querySelector('label').textContent = "Disponible";
                     } else {
                         const parent = this.parentNode;
-                        parent.style.background = "red";
+                        parent.style.background = red;
                         parent.querySelector('label').textContent = "No Disponible";
                     }
                 });
