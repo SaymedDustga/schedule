@@ -10,7 +10,9 @@
         "02:00 PM": true,
         "03:00 PM": false,
         "04:00 PM": true,
-        "05:00 PM": true
+        "05:00 PM": true,
+        "06:00 PM": false,
+        "07:00 PM": true
     },
     "martes": {
         "07:00 AM": true,
@@ -23,7 +25,9 @@
         "02:00 PM": false,
         "03:00 PM": true,
         "04:00 PM": true,
-        "05:00 PM": true
+        "05:00 PM": true,
+        "06:00 PM": true,
+        "07:00 PM": false
     },
     "miércoles": {
         "07:00 AM": true,
@@ -36,7 +40,9 @@
         "02:00 PM": true,
         "03:00 PM": true,
         "04:00 PM": false,
-        "05:00 PM": true
+        "05:00 PM": true,
+        "06:00 PM": false,
+        "07:00 PM": true
     },
     "jueves": {
         "07:00 AM": true,
@@ -49,7 +55,9 @@
         "02:00 PM": true,
         "03:00 PM": true,
         "04:00 PM": true,
-        "05:00 PM": true
+        "05:00 PM": true,
+        "06:00 PM": true,
+        "07:00 PM": false
     },
     "viernes": {
         "07:00 AM": true,
@@ -62,6 +70,8 @@
         "02:00 PM": true,
         "03:00 PM": true,
         "04:00 PM": true,
-        "05:00 PM": false
+        "05:00 PM": false,
+        "06:00 PM": false,
+        "07:00 PM": true
     }
 }
