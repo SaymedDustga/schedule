@@ -6,7 +6,7 @@ const green = "#B7D1B9";
 
 const urlAPI = "https://is-team-b.onrender.com/doctors/"
 
-const days_translation = {
+const days_translation_eng_spa = {
 	"monday" : "Lunes",
 	"tuesday" :"Martes",
 	"wednesday" :"Miércoles",
@@ -14,6 +14,16 @@ const days_translation = {
 	"friday" : "Viernes",
 	"saturday" :"Sabado",
 	"sunday" :"Domingo"
+}
+
+const days_translation_spa_eng = {
+	"lunes" : "monday",
+	"martes" :"tuesday",
+	"miércoles" :"wednesday",
+	"jueves" :"thursday",
+	"viernes" : "friday",
+	"sabado" :"saturday",
+	"domingo" :"sunday"
 }
 
 document.addEventListener("DOMContentLoaded", async function() {
@@ -33,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                         h = h - 12;
                     }
                     const finalString = ((h < 10) ? '0' + h : h) + text;
-                    const selectorString = `table tr > td#${days_translation[day_name].toLowerCase()}${finalString.toLowerCase()} > input[type="checkbox"]`;
+                    const selectorString = `table tr > td#${days_translation_eng_spa[day_name].toLowerCase()}${finalString.toLowerCase()} > input[type="checkbox"]`;
                     const checkbox = document.querySelector(selectorString);
 
                     if (available && is_work) {
@@ -104,14 +114,7 @@ async function updateJsonData(updatedData) {
 }
 
 save_button.addEventListener("click", function() {
-    const checkboxs = document.querySelectorAll('table input[type="checkbox"]');
-    checkboxs.forEach((element) => {
-        element.style.visibility = "hidden";
-    })
-    save_button.disabled = true;
-    mod_button.disabled = false;
-
-    const updatedData = {
+    const upData ={
         "time" : {
             "monday" :
             {
@@ -195,6 +198,110 @@ save_button.addEventListener("click", function() {
             }
         }
     };
+    const checkboxs = document.querySelectorAll('table input[type="checkbox"]');
+    checkboxs.forEach((element) => {
+        element.style.visibility = "hidden";
+        const elmData = element.parentElement;
+        const idData = elmData.id.match(/[a-zA-ZáéíóúÁÉÍÓÚ]+/g);
+        const idTimeData = elmData.id.match(/[0-9]+/g);
+        // console.log(parseInt(idTimeData[0].substring(0,2)));
+        const time = parseInt(idTimeData[0].substring(0,2));
+        // console.log(elmData.childNodes[3].textContent);
+        upData["time"][days_translation_spa_eng[idData[0]]][(time < 12 && idData[1] == "pm") ? time + 12 + ":00" : ((time < 10) ? "0":"") + time + ":00"] = (elmData.childNodes[3].innerText == "Asignado");
+        // console.log(idData[1]);
+        // console.log((time < 12 && idData[1] == "pm") ? time + 12 + ":00" : ((time < 10) ? "0":"") + time + ":00");
+        // console.log(element.parentElement);
+    })
+    save_button.disabled = true;
+    mod_button.disabled = false;
 
-    updateJsonData(updatedData)
+    console.log(upData);
+
+    // const updatedData = {
+    //     "time" : {
+    //         "monday" :
+    //         {
+    //             "07:00" : true,
+    //             "08:00" : true,
+    //             "09:00" : true,
+    //             "10:00" : false,
+    //             "11:00" : false,
+    //             "12:00" : false,
+    //             "13:00" : false,
+    //             "14:00" : false,
+    //             "15:00" : false,
+    //             "16:00" : false,
+    //             "17:00" : false,
+    //             "18:00" : true,
+    //             "19:00" : false
+    //         },
+    //         "tuesday" :
+    //         {
+    //             "07:00" : true,
+    //             "08:00" : true,
+    //             "09:00" : true,
+    //             "10:00" : false,
+    //             "11:00" : false,
+    //             "12:00" : false,
+    //             "13:00" : false,
+    //             "14:00" : false,
+    //             "15:00" : false,
+    //             "16:00" : false,
+    //             "17:00" : false,
+    //             "18:00" : false,
+    //             "19:00" : false
+    //         },
+    //         "wednesday" :
+    //         {
+    //             "07:00" : true,
+    //             "08:00" : true,
+    //             "09:00" : true,
+    //             "10:00" : false,
+    //             "11:00" : false,
+    //             "12:00" : false,
+    //             "13:00" : false,
+    //             "14:00" : false,
+    //             "15:00" : false,
+    //             "16:00" : false,
+    //             "17:00" : false,
+    //             "18:00" : false,
+    //             "19:00" : false
+    //         },
+    //         "thursday" :
+    //         {
+    //             "07:00" : true,
+    //             "08:00" : true,
+    //             "09:00" : true,
+    //             "10:00" : false,
+    //             "11:00" : false,
+    //             "12:00" : false,
+    //             "13:00" : false,
+    //             "14:00" : false,
+    //             "15:00" : false,
+    //             "16:00" : false,
+    //             "17:00" : false,
+    //             "18:00" : false,
+    //             "19:00" : false
+    //         },
+    //         "friday" :
+    //         {
+    //             "07:00" : true,
+    //             "08:00" : true,
+    //             "09:00" : true,
+    //             "10:00" : false,
+    //             "11:00" : false,
+    //             "12:00" : false,
+    //             "13:00" : false,
+    //             "14:00" : false,
+    //             "15:00" : false,
+    //             "16:00" : false,
+    //             "17:00" : false,
+    //             "18:00" : false,
+    //             "19:00" : false
+    //         }
+    //     }
+    // };
+
+    // updateJsonData(updatedData)
+    updateJsonData(upData);
 });
