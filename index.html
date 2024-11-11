@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="scripts/date_menu.js"></script>
     <script defer src="scripts/script.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
 </head>
 <body>
     <div class="body-content">
@@ -18,7 +19,6 @@
                     <li><a href="#">Link</a></li>
                 </ul>
             </nav>
-            <!-- <div class="h3-bg"><h3 class="fill"></h3></div> -->
             <h3 class="date-header"></h3>
         </header>
         <main>
@@ -272,6 +272,12 @@
                 <div class="buttons">
                     <button id="modificar">Modificar Horario</button>
                     <button id="guardar" disabled>Guardar Horario</button>
+                </div>
+            </div>
+            <div id="loadingModal" class="modal">
+                <div class="modal-content">
+                    <div id="loader"></div>
+                    <p id="loadingText">Cargando</p>
                 </div>
             </div>
         </main>
